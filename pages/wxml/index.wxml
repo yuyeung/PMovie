@@ -1,0 +1,39 @@
+<!-- <view>
+  <view>正在上映</view>
+  <view>即将上映</view>
+  <view>榜单</view>
+</view> -->
+
+<view class="container">
+  <!-- y轴滑动 -->
+  <view class="board" scroll-y="true">
+
+    <block wx:for="{{ boards }}" wx:key="key">
+
+      <view class="board-item">
+        <!-- 导航栏 -->
+        <navigator url="../list/list?type={{ item.key}}" hover-class="none">
+          <view class="title">
+            <text>{{ item.key }}</text>
+            <image src="../../images/arrowright.png" mode="aspectFill" />
+          </view>
+        </navigator>
+
+        <!-- x轴滑动 -->
+        <scroll-view class="content" scroll-x="true">
+          <!-- 内容 -->
+          <view class="inner">
+            <navigator wx:for="{{ item.movies }}" wx:key="id" url="../item/item?id={{ item.id }}">
+              <view class="movie-item">
+                <image src="{{ item.img?item.img:item.image }}" mode="aspectFill" />
+                <text>{{ item.t?item.t:item.title }}</text>
+              </view>
+            </navigator>
+          </view>
+        </scroll-view>
+
+      </view>
+
+    </block>
+  </view>
+</view>
